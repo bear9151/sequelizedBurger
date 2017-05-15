@@ -1,46 +1,77 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12 text-center" id="top-bar">
-			<img src="/assets/images/burger.png" alt="burger" />
-			<h1> Eat-Da-Burger! </h1>
-		</div>
-		<div class="col-xs-6 text-center" class="task">
-			<div class="row">
-			  {{#each burgers}}
-			  	{{#unless this.devoured}}
-				<div class="col-xs-9 text-center">
-					<pre>{{this.id}}. {{this.burger_name}}
-					</pre>
-				  		<!-- {{this.Date}} -->
-				</div>
-				<div class="col-xs-3 text-center">
-					<form method="POST" action="/burgers/update?_method=PUT" class="button-size">
-						<input input type="hidden" type="text" name="burger_id" value={{this.id}}><br>
-						<button type="submit" class="btn btn-default">Devour it!</button>
-					</form>
-				</div>
-				{{/unless}}
-			  {{/each}}
-			</div>
-		</div>
-		<div class="col-xs-6 text-center" class="task">
-			  {{#each burgers}}
-			  	{{#if this.devoured}}
-			  		<input class="form-control" type="text" placeholder="{{this.id}} . {{this.burger_name}}" readonly>
-				{{/if}}
-			  {{/each}}
-		</div>
-	</div>
+<div class="jumbotron text-center">
+    <img src="assets/img/burger.png" alt="burger">
+<h1>Welcome to BB-Burger</h1>
 </div>
 
 <div class="container">
-	<div class="row">
-		<div class="col-xs-12 text-center enter_section">
-			<form action="/burgers/create" method="POST">
-				<input type="text" class="form-control" name="burger_name" value="" id="enter_text">
-				<button type="submit" class="btn btn-primary" id="text-enter-button">Submit</button>
-			</form>
-			<p>Enter a burger you want to eat Click the "Submit" button.</p>
-		</div>
-	</div>
+    <div class="row">
+        <div class="col-md-6 panel panel-info">
+            <h2>Burger Menu</h2>
+            <ul>
+                {{#each burgers}}
+                    {{#unless this.devoured}}
+                        <li>
+                            {{this.burger_name}}
+
+                            <form action="/{{this.id}}?_method=PUT" method="POST">
+                                <input type="hidden"
+                                       name="devoured"
+                                       value="{{#if this.devoured}}false{{else}}true{{/if}} ">
+                                <button class="btn btn-success"  type="submit">{{#if this.devoured}}Eat
+                                    Again{{else}}Devour{{/if}}</button>
+                            </form>
+
+                            <form action="/{{this.id}}?_method=DELETE" method="POST">
+                                <button class="btn btn-danger" type="submit">DELETE!</button>
+                            </form>
+
+                        </li>
+                    {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="col-md-6 panel panel-success">
+            <h2>Burgers Eaten</h2>
+            <ul>
+                {{#each burgers}}
+                    {{#if this.devoured}}
+                        <li>
+                            {{this.burger_name}}
+
+                            <form action="/{{this.id}}?_method=PUT" method="POST">
+                                <input type="hidden"
+                                       name="devoured"
+                                       value="{{#if this.devoured}}false{{else}}true{{/if}} ">
+                                <button class="btn btn-success"  type="submit">{{#if this.devoured}}Eat
+                                    Again{{else}}Devour{{/if}}</button>
+                            </form>
+
+                            <form action="/{{this.id}}?_method=DELETE" method="POST">
+                                <button class="btn btn-danger" type="submit">DELETE!</button>
+                            </form>
+                        </li>
+                    {{/if}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 panel panel-primary">
+            <h2>Create a Burger</h2>
+            <form class="create-update-form" action="/" method="POST">
+            <div class="form-group">
+            <label for="bur">What burger will ya have?</label>
+            <input type="text" id="bur" name="name">
+            </div>
+            <div class="form-group">
+                <label for="devo">Want to eat it now?</label><br>
+                <input type="radio" name="devoured" value="1" checked> Devoured<br>
+                <input type="radio" name="devoured" value="0"> Not Devoured
+            </div>
+                <button type="submit" class="btn btn-warning">Add Burger</button>
+            </form>
+        </div>
+    </div>
 </div>

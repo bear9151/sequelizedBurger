@@ -1,22 +1,16 @@
-// CONNECTION.JS - THIS FILE INITIATES THE CONNECTION TO MYSQL
-var mysql = require("mysql"),
-    connection;
+// Set up MySQL connection.
+var mysql = require("mysql");
 
-if (process.env.JAWSDB_URL) {
-    connection = mysql.createConnection(process.env.JAWSDB_URL);
-} else {
-    connection = mysql.createConnection({
-        port: 3306,
-        host: "localhost",
-        user: "root",
-        password: "root",
-        database: "burgers_db"
-    });
-}
-;
+var connection = mysql.createConnection({
+    port: 3306,
+    host: "hngomrlb3vfq3jcr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "atqnl8shus8cn560",
+    password: "s1bvgtbhttxviux9",
+    database: "rqd7p196rycksrxm"
+});
 
-// CONNECT TO DATABASE
-connection.connect(function (err) {
+// Make connection.
+connection.connect(function(err) {
     if (err) {
         console.error("error connecting: " + err.stack);
         return;
@@ -24,4 +18,5 @@ connection.connect(function (err) {
     console.log("connected as id " + connection.threadId);
 });
 
+// Export connection for our ORM to use.
 module.exports = connection;
