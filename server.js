@@ -1,25 +1,33 @@
+// Dependencies, and Express setup
 var express = require("express"),
-    exphbs = require("express-handlebars"),
-    methodOverride = require("method-override"),
     bodyParser = require("body-parser"),
-    port = process.env.PORT || 3000,
-    app = express();
+    methodOverride = require("method-override"),
+    exphbs = require("express-handlebars"),
+    db = require('./models'),
+    app = express(),
+    port = process.env.PORT || 3000;
 
-app.use(express.static(__dirname + "/public"));
-app.use(bodyParser.urlencoded({ extended: false }));
+// Allow data parsing for Express
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Override with POST having ?_method=DELETE
+// Static Directory
+app.use(express.static(process.cwd() + "/public"));
+
+// Method override & Handlebars enabled
 app.use(methodOverride("_method"));
-
-// Set Handlebars.
-var exphbs = require("express-handlebars");
-
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Import routes and give the server access to them.
-var routes = require("./controllers/burger_controller.js");
+// app.use("/", routes);
+require("./controllers/burgers_controller.js")(app);
 
-app.use("/", routes);
-
-app.listen(port);
+// sync sequelize models and start express server
+db.sequelize.sync({ }).then(function() {
+    // starting server w/ listener
+    app.listen(port, function() {
+        console.log("App listening on PORT " + port);
+    });
+});

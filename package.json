@@ -1,7 +1,7 @@
 {
   "name": "sequelizedBurger",
   "version": "1.0.0",
-  "description": "",
+  "description": "#### BB-Burger is an online restaurant that allows you to eat tasty, virtual burgers over and over again. Enjoy the full menu of speciality burgers, or even create your own from the BB-Burger open bar. The only limit is your BB-Hunger! Now, get to devouring.",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -24,6 +24,8 @@
     "express-handlebars": "^3.0.0",
     "method-override": "^2.3.8",
     "mysql": "^2.13.0",
-    "sequelize": "^3.30.4"
+    "sequelize": "^3.30.4",
+    "sequelize-cli": "^2.7.0",
+    "sqlite3": "^3.1.8"
   }
 }
