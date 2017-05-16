@@ -8,7 +8,7 @@
         <div class="col-md-6 panel panel-info">
             <h2>Burger Menu</h2>
             <ul>
-                {{#each sequelizedBurger}}
+                {{#each Burgers}}
                     {{#unless this.devoured}}
                         <li>
                             {{this.burger_name}}
@@ -34,7 +34,7 @@
         <div class="col-md-6 panel panel-success">
             <h2>Burgers Eaten</h2>
             <ul>
-                {{#each sequelizedBurger}}
+                {{#each Burgers}}
                     {{#if this.devoured}}
                         <li>
                             {{this.burger_name}}
@@ -63,7 +63,7 @@
             <form class="create-update-form" action="/api/create" method="POST">
             <div class="form-group">
             <label for="bur">What burger will ya have?</label>
-            <input type="text" id="bur" name="name">
+            <input type="text" id="bur" name="burger_name">
             </div>
             <div class="form-group">
                 <label for="devo">Want to eat it now?</label><br>

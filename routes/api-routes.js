@@ -5,16 +5,16 @@ var db = require("../models");
 module.exports = function (app) {
 
     app.get('/', function (req, res) {
-        db.sequelizedBurger.findAll({})
+        db.Burger.findAll({})
             .then(function (data) {
-                res.render('index', {burger: data});
+                res.render('index', {Burgers: data});
             })
     });
 
     app.post('/api/create', function (req, res) {
-        db.sequelizedBurger.create(
+        db.Burger.create(
             {
-                burger_name: req.body.name,
+                burger_name: req.body.burger_name,
             }
         ).then(function () {
             res.redirect('/');
@@ -22,7 +22,7 @@ module.exports = function (app) {
     });
 
     app.post('/api/update/:id', function (req, res) {
-        db.sequelizedBurger.update(
+        db.Burger.update(
             {'devoured': true},
             {where: {id: req.params.id}}
         ).then(function () {
@@ -31,7 +31,7 @@ module.exports = function (app) {
     });
 
     app.post('/api/delete/:id', function (req, res) {
-        db.sequelizedBurger.destroy(
+        db.Burger.destroy(
             {
                 where: {id: req.params.id}
             }
