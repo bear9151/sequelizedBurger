@@ -1,11 +1,9 @@
 // Dependencies, and Express setup
-var express = require("express"),
-    bodyParser = require("body-parser"),
-    methodOverride = require("method-override"),
-    exphbs = require("express-handlebars"),
-    db = require('./models'),
-    app = express(),
-    port = process.env.PORT || 3000;
+var express = require("express");
+var bodyParser = require("body-parser");
+var port = process.env.PORT || 3000;
+var app = express();
+var db = require('./models');
 
 // Allow data parsing for Express
 app.use(bodyParser.json());
@@ -13,16 +11,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-// Static Directory
-app.use(express.static(process.cwd() + "/public"));
+// Setup Handlebars
+var exphbs = require("express-handlebars");
 
-// Method override & Handlebars enabled
-app.use(methodOverride("_method"));
+// Handlebars enabled
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// app.use("/", routes);
-require("./controllers/burgers_controller.js")(app);
+// Static Directory
+app.use(express.static(process.cwd() + "/public"));
+// app.use(express.static("./public"));
+
+// Require routes
+require("./routes/api-routes.js")(app);
 
 // sync sequelize models and start express server
 db.sequelize.sync({ }).then(function() {
