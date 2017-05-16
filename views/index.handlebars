@@ -8,12 +8,12 @@
         <div class="col-md-6 panel panel-info">
             <h2>Burger Menu</h2>
             <ul>
-                {{#each burgers}}
+                {{#each sequelizedBurger}}
                     {{#unless this.devoured}}
                         <li>
                             {{this.burger_name}}
 
-                            <form action="/{{this.id}}?_method=PUT" method="POST">
+                            <form action="/api/update/{{this.id}}" method="POST">
                                 <input type="hidden"
                                        name="devoured"
                                        value="{{#if this.devoured}}false{{else}}true{{/if}} ">
@@ -21,7 +21,7 @@
                                     Again{{else}}Devour{{/if}}</button>
                             </form>
 
-                            <form action="/{{this.id}}?_method=DELETE" method="POST">
+                            <form action="/api/delete/{{this.id}}" method="POST">
                                 <button class="btn btn-danger" type="submit">DELETE!</button>
                             </form>
 
@@ -34,12 +34,12 @@
         <div class="col-md-6 panel panel-success">
             <h2>Burgers Eaten</h2>
             <ul>
-                {{#each burgers}}
+                {{#each sequelizedBurger}}
                     {{#if this.devoured}}
                         <li>
                             {{this.burger_name}}
 
-                            <form action="/{{this.id}}?_method=PUT" method="POST">
+                            <form action="/api/update/{{this.id}}" method="POST">
                                 <input type="hidden"
                                        name="devoured"
                                        value="{{#if this.devoured}}false{{else}}true{{/if}} ">
@@ -47,7 +47,7 @@
                                     Again{{else}}Devour{{/if}}</button>
                             </form>
 
-                            <form action="/{{this.id}}?_method=DELETE" method="POST">
+                            <form action="/api/delete/{{this.id}}" method="POST">
                                 <button class="btn btn-danger" type="submit">DELETE!</button>
                             </form>
                         </li>
@@ -60,7 +60,7 @@
     <div class="row">
         <div class="col-md-12 panel panel-primary">
             <h2>Create a Burger</h2>
-            <form class="create-update-form" action="/" method="POST">
+            <form class="create-update-form" action="/api/create" method="POST">
             <div class="form-group">
             <label for="bur">What burger will ya have?</label>
             <input type="text" id="bur" name="name">

@@ -14,7 +14,7 @@ module.exports = function (app) {
     app.post('/api/create', function (req, res) {
         db.sequelizedBurger.create(
             {
-                burger_name: req.body.burger_type,
+                burger_name: req.body.name,
             }
         ).then(function () {
             res.redirect('/');
