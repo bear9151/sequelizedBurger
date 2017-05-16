@@ -1,6 +1,6 @@
 # BB-Burger
 
-**This is an instance of a previous assignment. Assignment not yet live**
+*This is an instance of a previous assignment. Assignment not yet live*
 
 #### BB-Burger is an online restaurant that allows you to eat tasty, virtual burgers over and over again. Enjoy the full menu of speciality burgers, or even create your own from the BB-Burger open bar. The only limit is your BB-Hunger! Now, get to devouring.
 
