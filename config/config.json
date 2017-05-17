@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "",
-    "database": "sequelizedburgers_db",
-    "host": "localhost",
+    "username": "qmyu92y1da0yol9g",
+    "password": "bl3j4b5vcns027lb",
+    "database": "dr75pejyyn2gxndu",
+    "host": "gzp0u91edhmxszwf.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
