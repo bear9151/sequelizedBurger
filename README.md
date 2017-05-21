@@ -1,4 +1,4 @@
-# BB-Burger
+# BB-Burger, the Sequel
 
 *This is an instance of a previous assignment--refactored to use Sequelize ORM. View deployment here: https://sequelburgerbarrett.herokuapp.com/*
 
