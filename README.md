@@ -26,3 +26,4 @@
   * Express Routing
   * Express Handlebars
   * mySQL Databases
+  * Sequelize ORM
